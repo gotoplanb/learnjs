@@ -1,3 +1,7 @@
+test:
+  override:
+    - cd services && npm test && cd ..
+
 deployment:
   prod:
     branch: master
