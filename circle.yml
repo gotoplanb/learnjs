@@ -1,0 +1,13 @@
+deployment:
+  prod:
+    branch: master
+    commands:
+      - ./sspa deploy_bucket learnjs.davestanton.com
+  staging:
+    branch: staging
+    commands:
+      - ./sspa deploy_bucket learnjs-staging.davestanton.com
+  dev:
+    branch: develop
+    commands:
+      - ./sspa deploy_bucket learnjs-dev.davestanton.com
