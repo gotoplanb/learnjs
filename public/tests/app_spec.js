@@ -33,7 +33,7 @@ describe('LearnJS', function() {
 
     it('has a title that includes the problem number', function() {
       var view = learnjs.problemView('1');
-      expect(view.text()).toEqual('Problem #1');
+      expect(view.text()).toContain('Problem #1');
     })
 
   })
