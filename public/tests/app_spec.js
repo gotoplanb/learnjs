@@ -4,24 +4,20 @@ describe('LearnJS', function() {
     learnjs.showView('#problem-1');
     expect($('.view-container .problem-view').length).toEqual(1);
   });
-
   it('shows the landing page if there is no hash', function() {
     learnjs.showView('');
     expect($('.view-container .landing-view').length).toEqual(1);
   });
-
   it('passes the hash view parameter to the view fucntion', function() {
     spyOn(learnjs, 'problemView');
     learnjs.showView('#problem-42');
     expect(learnjs.problemView).toHaveBeenCalledWith('42');
   });
-
   it('invokes the router when loaded', function() {
     spyOn(learnjs, 'showView');
     learnjs.appOnReady();
     expect(learnjs.showView).toHaveBeenCalledWith(window.location.hash);
-  })
-
+  });
   it('subscribes to the hash change event', function() {
     learnjs.appOnReady();
     spyOn(learnjs, 'showView');
@@ -31,11 +27,20 @@ describe('LearnJS', function() {
 
   describe('problem view', function() {
 
+    var view;
+    beforeEach(function() {
+      view = learnjs.problemView('1');
+    });
     it('has a title that includes the problem number', function() {
-      var view = learnjs.problemView('1');
-      expect(view.text()).toEqual('Problem #1');
-    })
+      expect(view.text()).toContain('Problem #1');
+    });
+    it('shows the description', function() {
+      expect(view.find('[data-name="description"]').text()).toEqual('What is truth?');
+    });
+    it('shows the code', function() {
+      expect(view.find('[data-name="code"]').text()).toEqual('function problem() { return __; }');
+    });
 
-  })
+  });
 
 });
